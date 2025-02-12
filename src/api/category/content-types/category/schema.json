@@ -4,7 +4,7 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "Category",
+    "displayName": "Enseignant",
     "description": "Organize your content into categories"
   },
   "options": {
@@ -12,20 +12,38 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "nom": {
       "type": "string"
     },
-    "slug": {
+    "grade": {
+      "type": "string"
+    },
+    "profile_photo": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "universite": {
+      "type": "string"
+    },
+    "numero_telephone": {
+      "type": "string"
+    },
+    "faculte": {
+      "type": "string"
+    },
+    "departement": {
+      "type": "string"
+    },
+    "pays": {
+      "type": "string"
+    },
+    "pwd": {
+      "type": "password"
+    },
+    "enseignant_id": {
       "type": "uid"
-    },
-    "articles": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::article.article",
-      "mappedBy": "category"
-    },
-    "description": {
-      "type": "text"
     }
   }
 }

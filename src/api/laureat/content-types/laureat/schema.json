@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "laureats",
+  "info": {
+    "singularName": "laureat",
+    "pluralName": "laureats",
+    "displayName": "Laureat",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "laureat_id": {
+      "type": "uid"
+    },
+    "nom": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "annee_graduation": {
+      "type": "string"
+    },
+    "titre_memoire": {
+      "type": "string"
+    },
+    "encadreur": {
+      "type": "string"
+    },
+    "numero_telephone": {
+      "type": "string"
+    }
+  }
+}

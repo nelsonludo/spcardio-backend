@@ -4,7 +4,7 @@
   "info": {
     "singularName": "article",
     "pluralName": "articles",
-    "displayName": "Article",
+    "displayName": "Etudiant",
     "description": "Create your blog content"
   },
   "options": {
@@ -12,38 +12,36 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
+    "nom": {
       "type": "string"
     },
-    "description": {
-      "type": "text",
-      "maxLength": 80
+    "email": {
+      "type": "email"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
+    "annee_entree": {
+      "type": "string"
     },
-    "cover": {
+    "niveau_actuel": {
+      "type": "integer",
+      "max": 3,
+      "default": 1
+    },
+    "profile_photo": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images", "files", "videos"]
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
-    "author": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "articles"
+    "pwd": {
+      "type": "password"
     },
-    "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "articles"
-    },
-    "blocks": {
-      "type": "dynamiczone",
-      "components": ["shared.media", "shared.quote", "shared.rich-text", "shared.slider"]
+    "edutiant_id": {
+      "type": "uid"
     }
   }
 }
