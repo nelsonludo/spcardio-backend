@@ -41,9 +41,6 @@
     },
     "pwd": {
       "type": "password"
-    },
-    "enseignant_id": {
-      "type": "uid"
     }
   }
 }

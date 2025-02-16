@@ -39,9 +39,6 @@
     },
     "pwd": {
       "type": "password"
-    },
-    "edutiant_id": {
-      "type": "uid"
     }
   }
 }
