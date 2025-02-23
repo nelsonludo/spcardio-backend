@@ -1,5 +1,17 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface SharedEnseignants extends Struct.ComponentSchema {
+  collectionName: 'components_shared_enseignants';
+  info: {
+    description: '';
+    displayName: 'enseignants';
+    icon: 'emotionHappy';
+  };
+  attributes: {
+    enseignant: Schema.Attribute.Component<'shared.person', true>;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -8,6 +20,17 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
   attributes: {
     file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+  };
+}
+
+export interface SharedPerson extends Struct.ComponentSchema {
+  collectionName: 'components_shared_people';
+  info: {
+    displayName: 'Person';
+    icon: 'walk';
+  };
+  attributes: {
+    name: Schema.Attribute.String;
   };
 }
 
@@ -20,6 +43,18 @@ export interface SharedQuote extends Struct.ComponentSchema {
   attributes: {
     body: Schema.Attribute.Text;
     title: Schema.Attribute.String;
+  };
+}
+
+export interface SharedResidents extends Struct.ComponentSchema {
+  collectionName: 'components_shared_residents';
+  info: {
+    description: '';
+    displayName: 'residents';
+    icon: 'alien';
+  };
+  attributes: {
+    resident: Schema.Attribute.Component<'shared.person', true>;
   };
 }
 
@@ -65,8 +100,11 @@ export interface SharedSlider extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'shared.enseignants': SharedEnseignants;
       'shared.media': SharedMedia;
+      'shared.person': SharedPerson;
       'shared.quote': SharedQuote;
+      'shared.residents': SharedResidents;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;

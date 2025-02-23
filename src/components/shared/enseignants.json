@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shared_enseignants",
+  "info": {
+    "displayName": "enseignants",
+    "icon": "emotionHappy",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "enseignant": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.person"
+    }
+  }
+}

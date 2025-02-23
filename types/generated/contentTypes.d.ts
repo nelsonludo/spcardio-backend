@@ -398,119 +398,6 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
-  collectionName: 'articles';
-  info: {
-    description: 'Create your blog content';
-    displayName: 'Etudiant';
-    pluralName: 'articles';
-    singularName: 'article';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    annee_entree: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.Email;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::article.article'
-    > &
-      Schema.Attribute.Private;
-    niveau_actuel: Schema.Attribute.Integer &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 3;
-        },
-        number
-      > &
-      Schema.Attribute.DefaultTo<1>;
-    nom: Schema.Attribute.String;
-    profile_photo: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    publishedAt: Schema.Attribute.DateTime;
-    pwd: Schema.Attribute.Password;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
-  collectionName: 'categories';
-  info: {
-    description: 'Organize your content into categories';
-    displayName: 'Enseignant';
-    pluralName: 'categories';
-    singularName: 'category';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    departement: Schema.Attribute.String;
-    email: Schema.Attribute.Email;
-    faculte: Schema.Attribute.String;
-    grade: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    > &
-      Schema.Attribute.Private;
-    nom: Schema.Attribute.String;
-    numero_telephone: Schema.Attribute.String;
-    pays: Schema.Attribute.String;
-    profile_photo: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    pwd: Schema.Attribute.Password;
-    universite: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiCourseCourse extends Struct.CollectionTypeSchema {
-  collectionName: 'courses';
-  info: {
-    description: '';
-    displayName: 'course';
-    pluralName: 'courses';
-    singularName: 'course';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    date: Schema.Attribute.DateTime;
-    horaires: Schema.Attribute.String;
-    intitule: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::course.course'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    unite_enseignement: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiDocDoc extends Struct.CollectionTypeSchema {
   collectionName: 'docs';
   info: {
@@ -531,6 +418,114 @@ export interface ApiDocDoc extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::doc.doc'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEnseignantEnseignant extends Struct.CollectionTypeSchema {
+  collectionName: 'enseignants';
+  info: {
+    description: '';
+    displayName: 'Enseignant';
+    pluralName: 'enseignants';
+    singularName: 'enseignant';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    departement: Schema.Attribute.String;
+    faculte: Schema.Attribute.String;
+    grade: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::enseignant.enseignant'
+    > &
+      Schema.Attribute.Private;
+    nom: Schema.Attribute.String;
+    pays: Schema.Attribute.String;
+    photo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    publishedAt: Schema.Attribute.DateTime;
+    universite: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEnseignementEnseignement
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'enseignements';
+  info: {
+    description: '';
+    displayName: 'Enseignement';
+    pluralName: 'enseignements';
+    singularName: 'enseignement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.String;
+    enseignants: Schema.Attribute.Component<'shared.person', true>;
+    horaires: Schema.Attribute.String;
+    intitule: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::enseignement.enseignement'
+    > &
+      Schema.Attribute.Private;
+    observation: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    residents: Schema.Attribute.Component<'shared.person', true>;
+    uniteEnseignement: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiEtudiantEtudiant extends Struct.CollectionTypeSchema {
+  collectionName: 'etudiants';
+  info: {
+    description: '';
+    displayName: 'Etudiant';
+    pluralName: 'etudiants';
+    singularName: 'etudiant';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    anneeDeSortie: Schema.Attribute.String;
+    anneeEntree: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email &
+      Schema.Attribute.DefaultTo<'example@example.com'>;
+    encadreurs: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::etudiant.etudiant'
+    > &
+      Schema.Attribute.Private;
+    niveau: Schema.Attribute.String;
+    nom: Schema.Attribute.String;
+    numero: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    titreMemoire: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -569,38 +564,38 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiLaureatLaureat extends Struct.CollectionTypeSchema {
-  collectionName: 'laureats';
+export interface ApiWeeklyEnseignementWeeklyEnseignement
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'weekly_enseignements';
   info: {
     description: '';
-    displayName: 'Laureat';
-    pluralName: 'laureats';
-    singularName: 'laureat';
+    displayName: 'WeeklyEnseignement';
+    pluralName: 'weekly-enseignements';
+    singularName: 'weekly-enseignement';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    annee_graduation: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    email: Schema.Attribute.Email;
-    encadreur: Schema.Attribute.String;
-    laureat_id: Schema.Attribute.UID;
+    enseignements: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::enseignement.enseignement'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::laureat.laureat'
+      'api::weekly-enseignement.weekly-enseignement'
     > &
       Schema.Attribute.Private;
-    nom: Schema.Attribute.String;
-    numero_telephone: Schema.Attribute.String;
+    niveau: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    titre_memoire: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    week: Schema.Attribute.String;
   };
 }
 
@@ -1114,12 +1109,12 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
-      'api::article.article': ApiArticleArticle;
-      'api::category.category': ApiCategoryCategory;
-      'api::course.course': ApiCourseCourse;
       'api::doc.doc': ApiDocDoc;
+      'api::enseignant.enseignant': ApiEnseignantEnseignant;
+      'api::enseignement.enseignement': ApiEnseignementEnseignement;
+      'api::etudiant.etudiant': ApiEtudiantEtudiant;
       'api::global.global': ApiGlobalGlobal;
-      'api::laureat.laureat': ApiLaureatLaureat;
+      'api::weekly-enseignement.weekly-enseignement': ApiWeeklyEnseignementWeeklyEnseignement;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_shared_people",
+  "info": {
+    "displayName": "Person",
+    "icon": "walk"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

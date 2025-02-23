@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "etudiants",
+  "info": {
+    "singularName": "etudiant",
+    "pluralName": "etudiants",
+    "displayName": "Etudiant",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string"
+    },
+    "niveau": {
+      "type": "string"
+    },
+    "anneeEntree": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email",
+      "default": "example@example.com"
+    },
+    "numero": {
+      "type": "string"
+    },
+    "anneeDeSortie": {
+      "type": "string"
+    },
+    "titreMemoire": {
+      "type": "string"
+    },
+    "encadreurs": {
+      "type": "string"
+    }
+  }
+}

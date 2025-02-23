@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "enseignants",
+  "info": {
+    "singularName": "enseignant",
+    "pluralName": "enseignants",
+    "displayName": "Enseignant",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string"
+    },
+    "grade": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "pays": {
+      "type": "string"
+    },
+    "departement": {
+      "type": "string"
+    },
+    "faculte": {
+      "type": "string"
+    },
+    "universite": {
+      "type": "string"
+    }
+  }
+}
