@@ -450,7 +450,9 @@ export interface ApiEnseignantEnseignant extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     nom: Schema.Attribute.String;
     pays: Schema.Attribute.String;
-    photo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    profilePhoto: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     universite: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -524,6 +526,9 @@ export interface ApiEtudiantEtudiant extends Struct.CollectionTypeSchema {
     niveau: Schema.Attribute.String;
     nom: Schema.Attribute.String;
     numero: Schema.Attribute.String;
+    profilePhoto: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     titreMemoire: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -1054,7 +1059,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1079,6 +1083,9 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    profilePhoto: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
