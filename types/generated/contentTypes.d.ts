@@ -398,6 +398,52 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiActivitePedagogiqueActivitePedagogique
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'activite_pedagogiques';
+  info: {
+    description: '';
+    displayName: 'Activite Pedagogique';
+    pluralName: 'activite-pedagogiques';
+    singularName: 'activite-pedagogique';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    enseignants: Schema.Attribute.Component<'shared.person', true>;
+    horaires: Schema.Attribute.String;
+    intitule: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::activite-pedagogique.activite-pedagogique'
+    > &
+      Schema.Attribute.Private;
+    obeservation: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    residents: Schema.Attribute.Component<'shared.person', true>;
+    type_d_activite_pedagogique: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::type-d-activite-pedagogique.type-d-activite-pedagogique'
+    >;
+    unite_d_enseignement: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::unite-d-enseignement.unite-d-enseignement'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDocDoc extends Struct.CollectionTypeSchema {
   collectionName: 'docs';
   info: {
@@ -455,42 +501,6 @@ export interface ApiEnseignantEnseignant extends Struct.CollectionTypeSchema {
     >;
     publishedAt: Schema.Attribute.DateTime;
     universite: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiEnseignementEnseignement
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'enseignements';
-  info: {
-    description: '';
-    displayName: 'Enseignement';
-    pluralName: 'enseignements';
-    singularName: 'enseignement';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    date: Schema.Attribute.String;
-    enseignants: Schema.Attribute.Component<'shared.person', true>;
-    horaires: Schema.Attribute.String;
-    intitule: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::enseignement.enseignement'
-    > &
-      Schema.Attribute.Private;
-    observation: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    residents: Schema.Attribute.Component<'shared.person', true>;
-    uniteEnseignement: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -569,14 +579,12 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiWeeklyEnseignementWeeklyEnseignement
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'weekly_enseignements';
+export interface ApiProgrammeProgramme extends Struct.CollectionTypeSchema {
+  collectionName: 'programmes';
   info: {
-    description: '';
-    displayName: 'WeeklyEnseignement';
-    pluralName: 'weekly-enseignements';
-    singularName: 'weekly-enseignement';
+    displayName: 'Programme';
+    pluralName: 'programmes';
+    singularName: 'programme';
   };
   options: {
     draftAndPublish: true;
@@ -585,22 +593,90 @@ export interface ApiWeeklyEnseignementWeeklyEnseignement
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    enseignements: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::enseignement.enseignement'
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::weekly-enseignement.weekly-enseignement'
+      'api::programme.programme'
     > &
       Schema.Attribute.Private;
-    niveau: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String;
+    unite_d_enseignements: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::unite-d-enseignement.unite-d-enseignement'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    week: Schema.Attribute.String;
+  };
+}
+
+export interface ApiTypeDActivitePedagogiqueTypeDActivitePedagogique
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'type_d_activite_pedagogiques';
+  info: {
+    displayName: "Type d'activite pedagogique";
+    pluralName: 'type-d-activite-pedagogiques';
+    singularName: 'type-d-activite-pedagogique';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    code: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::type-d-activite-pedagogique.type-d-activite-pedagogique'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    titre: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiUniteDEnseignementUniteDEnseignement
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'unite_d_enseignements';
+  info: {
+    description: '';
+    displayName: "Unite D'enseignement";
+    pluralName: 'unite-d-enseignements';
+    singularName: 'unite-d-enseignement';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    activite_pedagogiques: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::activite-pedagogique.activite-pedagogique'
+    >;
+    code: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::unite-d-enseignement.unite-d-enseignement'
+    > &
+      Schema.Attribute.Private;
+    programme: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::programme.programme'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    titre: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1114,12 +1190,14 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
+      'api::activite-pedagogique.activite-pedagogique': ApiActivitePedagogiqueActivitePedagogique;
       'api::doc.doc': ApiDocDoc;
       'api::enseignant.enseignant': ApiEnseignantEnseignant;
-      'api::enseignement.enseignement': ApiEnseignementEnseignement;
       'api::etudiant.etudiant': ApiEtudiantEtudiant;
       'api::global.global': ApiGlobalGlobal;
-      'api::weekly-enseignement.weekly-enseignement': ApiWeeklyEnseignementWeeklyEnseignement;
+      'api::programme.programme': ApiProgrammeProgramme;
+      'api::type-d-activite-pedagogique.type-d-activite-pedagogique': ApiTypeDActivitePedagogiqueTypeDActivitePedagogique;
+      'api::unite-d-enseignement.unite-d-enseignement': ApiUniteDEnseignementUniteDEnseignement;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

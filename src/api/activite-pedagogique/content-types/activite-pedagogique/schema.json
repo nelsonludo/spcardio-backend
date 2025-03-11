@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "activite_pedagogiques",
+  "info": {
+    "singularName": "activite-pedagogique",
+    "pluralName": "activite-pedagogiques",
+    "displayName": "Activite Pedagogique",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "intitule": {
+      "type": "string"
+    },
+    "obeservation": {
+      "type": "string",
+      "maxLength": 300
+    },
+    "date": {
+      "type": "date",
+      "required": false
+    },
+    "horaires": {
+      "type": "string"
+    },
+    "enseignants": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.person"
+    },
+    "residents": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.person"
+    },
+    "type_d_activite_pedagogique": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::type-d-activite-pedagogique.type-d-activite-pedagogique"
+    },
+    "unite_d_enseignement": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::unite-d-enseignement.unite-d-enseignement",
+      "inversedBy": "activite_pedagogiques"
+    }
+  }
+}

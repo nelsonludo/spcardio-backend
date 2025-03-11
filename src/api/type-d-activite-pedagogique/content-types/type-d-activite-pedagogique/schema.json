@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "type_d_activite_pedagogiques",
+  "info": {
+    "singularName": "type-d-activite-pedagogique",
+    "pluralName": "type-d-activite-pedagogiques",
+    "displayName": "Type d'activite pedagogique"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string"
+    },
+    "titre": {
+      "type": "string"
+    }
+  }
+}

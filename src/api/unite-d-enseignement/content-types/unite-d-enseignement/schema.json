@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "unite_d_enseignements",
+  "info": {
+    "singularName": "unite-d-enseignement",
+    "pluralName": "unite-d-enseignements",
+    "displayName": "Unite D'enseignement",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string"
+    },
+    "titre": {
+      "type": "string"
+    },
+    "programme": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::programme.programme",
+      "inversedBy": "unite_d_enseignements"
+    },
+    "activite_pedagogiques": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::activite-pedagogique.activite-pedagogique",
+      "mappedBy": "unite_d_enseignement"
+    }
+  }
+}

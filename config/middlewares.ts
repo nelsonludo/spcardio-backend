@@ -6,7 +6,7 @@ export default [
     name: "strapi::cors",
     config: {
       enabled: true,
-      origin: ["http://localhost:5173"], // Add your frontend app's domain(s) here
+      origin: ["http://localhost:5174"], // Add your frontend app's domain(s) here
       credentials: true, // Allow credentials like cookies
       headers: ["Content-Type", "Authorization"], // Allow these headers
     },

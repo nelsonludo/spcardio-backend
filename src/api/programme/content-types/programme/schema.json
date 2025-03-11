@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "programmes",
+  "info": {
+    "singularName": "programme",
+    "pluralName": "programmes",
+    "displayName": "Programme"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "unite_d_enseignements": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::unite-d-enseignement.unite-d-enseignement",
+      "mappedBy": "programme"
+    }
+  }
+}
