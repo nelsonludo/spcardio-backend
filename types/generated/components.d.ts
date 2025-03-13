@@ -1,14 +1,16 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
-export interface SharedEnseignants extends Struct.ComponentSchema {
-  collectionName: 'components_shared_enseignants';
+export interface SharedEnseignantsComponent extends Struct.ComponentSchema {
+  collectionName: 'components_shared_enseignants_components';
   info: {
-    description: '';
-    displayName: 'enseignants';
-    icon: 'emotionHappy';
+    displayName: 'enseignantsComponent';
+    icon: 'handHeart';
   };
   attributes: {
-    enseignant: Schema.Attribute.Component<'shared.person', true>;
+    enseignants: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::enseignant.enseignant'
+    >;
   };
 }
 
@@ -43,18 +45,6 @@ export interface SharedQuote extends Struct.ComponentSchema {
   attributes: {
     body: Schema.Attribute.Text;
     title: Schema.Attribute.String;
-  };
-}
-
-export interface SharedResidents extends Struct.ComponentSchema {
-  collectionName: 'components_shared_residents';
-  info: {
-    description: '';
-    displayName: 'residents';
-    icon: 'alien';
-  };
-  attributes: {
-    resident: Schema.Attribute.Component<'shared.person', true>;
   };
 }
 
@@ -100,11 +90,10 @@ export interface SharedSlider extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      'shared.enseignants': SharedEnseignants;
+      'shared.enseignants-component': SharedEnseignantsComponent;
       'shared.media': SharedMedia;
       'shared.person': SharedPerson;
       'shared.quote': SharedQuote;
-      'shared.residents': SharedResidents;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.slider': SharedSlider;

@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_enseignants_components",
+  "info": {
+    "displayName": "enseignantsComponent",
+    "icon": "handHeart"
+  },
+  "options": {},
+  "attributes": {
+    "enseignants": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::enseignant.enseignant"
+    }
+  }
+}

@@ -415,7 +415,10 @@ export interface ApiActivitePedagogiqueActivitePedagogique
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     date: Schema.Attribute.Date;
-    enseignants: Schema.Attribute.Component<'shared.person', true>;
+    enseignants: Schema.Attribute.Component<
+      'shared.enseignants-component',
+      true
+    >;
     horaires: Schema.Attribute.String;
     intitule: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -429,7 +432,7 @@ export interface ApiActivitePedagogiqueActivitePedagogique
         maxLength: 300;
       }>;
     publishedAt: Schema.Attribute.DateTime;
-    residents: Schema.Attribute.Component<'shared.person', true>;
+    residents: Schema.Attribute.Component<'shared.enseignants-component', true>;
     type_d_activite_pedagogique: Schema.Attribute.Relation<
       'oneToOne',
       'api::type-d-activite-pedagogique.type-d-activite-pedagogique'
