@@ -419,18 +419,19 @@ export interface ApiActivitePedagogiqueActivitePedagogique
       'shared.enseignants-component',
       true
     >;
+    fini: Schema.Attribute.Boolean;
     horaires: Schema.Attribute.String;
     intitule: Schema.Attribute.String;
+    lieu: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::activite-pedagogique.activite-pedagogique'
     > &
       Schema.Attribute.Private;
-    obeservation: Schema.Attribute.String &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 300;
-      }>;
     publishedAt: Schema.Attribute.DateTime;
     residents: Schema.Attribute.Component<'shared.enseignants-component', true>;
     type_d_activite_pedagogique: Schema.Attribute.Relation<
