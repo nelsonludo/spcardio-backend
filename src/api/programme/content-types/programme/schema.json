@@ -4,7 +4,8 @@
   "info": {
     "singularName": "programme",
     "pluralName": "programmes",
-    "displayName": "Programme"
+    "displayName": "Programme",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,7 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "unite_d_enseignements": {
       "type": "relation",

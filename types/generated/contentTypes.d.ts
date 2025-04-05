@@ -489,22 +489,27 @@ export interface ApiEnseignantEnseignant extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    departement: Schema.Attribute.String;
-    faculte: Schema.Attribute.String;
-    grade: Schema.Attribute.String;
+    departement: Schema.Attribute.String & Schema.Attribute.Required;
+    faculte: Schema.Attribute.String & Schema.Attribute.Required;
+    grade: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::enseignant.enseignant'
     > &
       Schema.Attribute.Private;
-    nom: Schema.Attribute.String;
-    pays: Schema.Attribute.String;
-    profilePhoto: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
+    matricule: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 6;
+        minLength: 6;
+      }>;
+    nom: Schema.Attribute.String & Schema.Attribute.Required;
+    pays: Schema.Attribute.String & Schema.Attribute.DefaultTo<'Cameroun'>;
+    profilePhoto: Schema.Attribute.Media<'images' | 'files'>;
     publishedAt: Schema.Attribute.DateTime;
-    universite: Schema.Attribute.String;
+    universite: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -529,6 +534,7 @@ export interface ApiEtudiantEtudiant extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     email: Schema.Attribute.Email &
+      Schema.Attribute.Unique &
       Schema.Attribute.DefaultTo<'example@example.com'>;
     encadreurs: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -537,6 +543,13 @@ export interface ApiEtudiantEtudiant extends Struct.CollectionTypeSchema {
       'api::etudiant.etudiant'
     > &
       Schema.Attribute.Private;
+    matricule: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 6;
+        minLength: 6;
+      }>;
     niveau: Schema.Attribute.String;
     nom: Schema.Attribute.String;
     numero: Schema.Attribute.String;
@@ -586,6 +599,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiProgrammeProgramme extends Struct.CollectionTypeSchema {
   collectionName: 'programmes';
   info: {
+    description: '';
     displayName: 'Programme';
     pluralName: 'programmes';
     singularName: 'programme';
@@ -604,7 +618,9 @@ export interface ApiProgrammeProgramme extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     unite_d_enseignements: Schema.Attribute.Relation<
       'oneToMany',
       'api::unite-d-enseignement.unite-d-enseignement'
@@ -619,6 +635,7 @@ export interface ApiTypeDActivitePedagogiqueTypeDActivitePedagogique
   extends Struct.CollectionTypeSchema {
   collectionName: 'type_d_activite_pedagogiques';
   info: {
+    description: '';
     displayName: "Type d'activite pedagogique";
     pluralName: 'type-d-activite-pedagogiques';
     singularName: 'type-d-activite-pedagogique';
@@ -627,7 +644,13 @@ export interface ApiTypeDActivitePedagogiqueTypeDActivitePedagogique
     draftAndPublish: true;
   };
   attributes: {
-    code: Schema.Attribute.String;
+    code: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 10;
+        minLength: 3;
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -638,7 +661,12 @@ export interface ApiTypeDActivitePedagogiqueTypeDActivitePedagogique
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    titre: Schema.Attribute.String;
+    titre: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+        minLength: 10;
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -662,7 +690,12 @@ export interface ApiUniteDEnseignementUniteDEnseignement
       'oneToMany',
       'api::activite-pedagogique.activite-pedagogique'
     >;
-    code: Schema.Attribute.String;
+    code: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 4;
+        minLength: 3;
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -677,7 +710,12 @@ export interface ApiUniteDEnseignementUniteDEnseignement
       'api::programme.programme'
     >;
     publishedAt: Schema.Attribute.DateTime;
-    titre: Schema.Attribute.String;
+    titre: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+        minLength: 10;
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1152,7 +1190,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    image: Schema.Attribute.Media<'images' | 'files'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

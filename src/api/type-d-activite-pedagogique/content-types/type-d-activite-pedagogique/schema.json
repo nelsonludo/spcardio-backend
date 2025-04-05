@@ -4,7 +4,8 @@
   "info": {
     "singularName": "type-d-activite-pedagogique",
     "pluralName": "type-d-activite-pedagogiques",
-    "displayName": "Type d'activite pedagogique"
+    "displayName": "Type d'activite pedagogique",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,10 +13,17 @@
   "pluginOptions": {},
   "attributes": {
     "code": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 10,
+      "minLength": 3
     },
     "titre": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "maxLength": 50,
+      "minLength": 10
     }
   }
 }

@@ -23,7 +23,9 @@
     },
     "email": {
       "type": "email",
-      "default": "example@example.com"
+      "default": "example@example.com",
+      "required": false,
+      "unique": true
     },
     "numero": {
       "type": "string"
@@ -38,14 +40,22 @@
       "type": "string"
     },
     "profilePhoto": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "matricule": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 6,
+      "minLength": 6
     }
   }
 }

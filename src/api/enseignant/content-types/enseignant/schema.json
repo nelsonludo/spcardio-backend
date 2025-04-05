@@ -13,22 +13,29 @@
   "pluginOptions": {},
   "attributes": {
     "nom": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "grade": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "pays": {
-      "type": "string"
+      "type": "string",
+      "required": false,
+      "default": "Cameroun"
     },
     "departement": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "faculte": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "universite": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "profilePhoto": {
       "type": "media",
@@ -36,10 +43,15 @@
       "required": false,
       "allowedTypes": [
         "images",
-        "files",
-        "videos",
-        "audios"
+        "files"
       ]
+    },
+    "matricule": {
+      "type": "string",
+      "required": true,
+      "maxLength": 6,
+      "minLength": 6,
+      "unique": true
     }
   }
 }
